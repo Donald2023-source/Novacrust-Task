@@ -3,11 +3,35 @@ import Navbar from "./components/Navbar";
 import { useState } from "react";
 import { countries, currencies } from "./data/data";
 import TransactionCard from "./components/transactionCard";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import img10 from "@/public/fox.png";
+import img11 from "@/public/rainbow.png";
+import img12 from "@/public/walletconnect-seeklogo.png";
+import img13 from "@/public/wallet-filled-money-tool.png";
+import Image from "next/image";
+import Button from "./components/Button";
 export default function Home() {
+  const paymentType = [
+    { name: "Metamask", icon: img10 },
+    { name: "Rainbow", icon: img11 },
+    { name: "WalletConnect", icon: img12 },
+    {
+      name: "Other Crypto Wallets (Binance, Conibase, Bybit etc)",
+      icon: img13,
+    },
+  ];
   const navItems = ["Crypto to cash", "Cash to crypto", "Crypto to flat loan"];
   const [activeTab, setActiveTab] = useState("Crypto to cash");
   return (
-    <div className="max-w-4xl p-5 flex items-center justify-center m-auto w-full h-screen  ">
+    <div className="max-w-2xl p-5 flex items-center justify-center m-auto w-full h-fit">
       <div className="flex shadow-xl py-5 border rounded-xl w-full  h-full my-auto flex-col">
         <Navbar
           navItems={navItems}
@@ -15,9 +39,9 @@ export default function Home() {
           setActiveTab={setActiveTab}
         />
 
-        <div className="w-[90%] py-12 mx-auto">
+        <div className="w-[90%] py-8 mx-auto">
           {activeTab === navItems[0] && (
-            <div>
+            <div className="flex flex-col gap-8 h-full">
               <TransactionCard
                 data={currencies}
                 initialState="ETH"
@@ -31,9 +55,61 @@ export default function Home() {
                 isSearch={false}
               />
 
-              <div>
-                <label htmlFor="">Pay From</label>
+              {/* Payment from  */}
+              <div className="flex flex-col gap-3">
+                <label className="font-semibold text-sm md:text-base text-[#013941] ml-2">
+                  Pay from
+                </label>
+                <Select>
+                  <SelectTrigger className="w-full p-7 bg-white border">
+                    <SelectValue placeholder="Select a fruit an Option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {paymentType.map((item, idx) => (
+                      <SelectItem
+                        className="flex items-center gap-5 my-3"
+                        value={item?.name}
+                      >
+                        <Image
+                          className="size-8 mr-3"
+                          src={item?.icon}
+                          alt={`${item?.name} icon`}
+                        />
+                        <span>{item?.name}</span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
+
+              {/* Payment to */}
+              <div className="flex flex-col gap-3">
+                <label className="font-semibold md:text-base text-sm text-[#013941] ml-2">
+                  Pay to
+                </label>
+                <Select>
+                  <SelectTrigger className="w-full p-7 bg-white border">
+                    <SelectValue placeholder="Select a fruit an Option" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {paymentType.map((item, idx) => (
+                      <SelectItem
+                        className="flex items-center gap-5 my-3"
+                        value={item?.name}
+                      >
+                        <Image
+                          className="size-8 mr-3"
+                          src={item?.icon}
+                          alt={`${item?.name} icon`}
+                        />
+                        <span>{item?.name}</span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <Button text="Convert now" />
             </div>
           )}
 
