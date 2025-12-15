@@ -5,10 +5,14 @@ import SelectComponent from "./SelectComponent";
 import img from "@/public/Accessbank.png";
 import img1 from "@/public/Zenith.png";
 import img2 from "@/public/Firstbank.png";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import Button from "./Button";
 
-export default function RecipientDetails() {
+export default function RecipientDetails({
+  setShowRecipientDetails,
+}: {
+  setShowRecipientDetails: React.Dispatch<SetStateAction<boolean>>;
+}) {
   const bankData = [
     { name: "Access Bank", icon: img, code: "AB" },
     { name: "Zenith Bank", icon: img1, code: "ZB" },
@@ -49,7 +53,10 @@ export default function RecipientDetails() {
   return (
     <div className="flex shadow-xl md:max-w-xl h-[90vh] py-5 justify-center items-center my-auto px-4 rounded-xl w-full flex-col">
       <header className="w-full flex items-center justify-between">
-        <ArrowLeft className="cursor-pointer" />
+        <ArrowLeft
+          onClick={() => setShowRecipientDetails(false)}
+          className="cursor-pointer"
+        />
         <span className="font-semibold text-primary">Recipient details</span>
         <span />
       </header>

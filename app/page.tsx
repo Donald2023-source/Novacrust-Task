@@ -41,7 +41,9 @@ export default function Home() {
         </div>
       </div>
 
-      {showRecieptientDetails && <RecipientDetails />}
+      {showRecieptientDetails && (
+        <RecipientDetails setShowRecipientDetails={setShowReciepientDetails} />
+      )}
     </div>
   );
 }
