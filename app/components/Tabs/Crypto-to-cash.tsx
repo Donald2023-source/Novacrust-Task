@@ -1,3 +1,4 @@
+"use client";
 import TransactionCard from "../transactionCard";
 import { currencies, countries } from "@/app/data/data";
 import {
@@ -16,7 +17,8 @@ import img12 from "@/public/walletconnect-seeklogo.png";
 import img13 from "@/public/wallet-filled-money-tool.png";
 import Image from "next/image";
 import Button from "../Button";
-import { SetStateAction } from "react";
+import { SetStateAction, useState } from "react";
+import { toast } from "sonner";
 
 export default function CryptToCash({
   setShowReciepientDetails,
@@ -32,6 +34,19 @@ export default function CryptToCash({
       icon: img13,
     },
   ];
+
+  const [paymentFrom, setPaymentFrom] = useState("");
+  const [paymentTo, setPaymentTo] = useState("");
+
+  // console.log("payment type", paymentFrom, paymentTo);
+
+  function handleSubmit() {
+    if (!paymentFrom || !paymentTo) {
+      toast.error("Please select a payment options");
+      return;
+    }
+    setShowReciepientDetails(true);
+  }
   return (
     <div className="flex flex-col gap-8 h-full">
       <TransactionCard
@@ -53,7 +68,7 @@ export default function CryptToCash({
           Pay from
         </label>
 
-        <Select>
+        <Select onValueChange={(value) => setPaymentFrom(value)}>
           <SelectTrigger className="w-full p-7 bg-white border">
             <SelectValue placeholder="Select a payment option" />
           </SelectTrigger>
@@ -88,7 +103,7 @@ export default function CryptToCash({
           Pay to
         </label>
 
-        <Select>
+        <Select onValueChange={(value) => setPaymentTo(value)}>
           <SelectTrigger className="w-full p-7 bg-white border">
             <SelectValue placeholder="Select a payment option" />
           </SelectTrigger>
@@ -117,10 +132,7 @@ export default function CryptToCash({
         </Select>
       </div>
 
-      <Button
-        onClick={() => setShowReciepientDetails(true)}
-        text="Convert now"
-      />
+      <Button onClick={() => handleSubmit()} text="Convert now" />
     </div>
   );
 }

@@ -126,5 +126,5 @@ body {
 }
 
 body {
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
 }

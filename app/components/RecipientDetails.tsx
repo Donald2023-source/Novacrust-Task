@@ -5,8 +5,9 @@ import SelectComponent from "./SelectComponent";
 import img from "@/public/Accessbank.png";
 import img1 from "@/public/Zenith.png";
 import img2 from "@/public/Firstbank.png";
-import { SetStateAction, useEffect, useState } from "react";
+import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import Button from "./Button";
+import { toast } from "sonner";
 
 export default function RecipientDetails({
   setShowRecipientDetails,
@@ -42,13 +43,19 @@ export default function RecipientDetails({
     }
   }, [formData.accountNumber]);
 
-  const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!formData.bank || !formData.accountNumber) {
+      toast.error("Please enter all necessary details");
+      return;
+    }
+    toast.success("Submitted successfully!");
+    const timeout = setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }
 
   return (
     <div className="flex shadow-xl md:max-w-xl h-[90vh] py-5 justify-center items-center my-auto px-4 rounded-xl w-full flex-col">
@@ -61,7 +68,10 @@ export default function RecipientDetails({
         <span />
       </header>
 
-      <form className="flex flex-col gap-5 w-full mt-10 flex-1">
+      <form
+        className="flex flex-col gap-5 w-full mt-10 flex-1"
+        onSubmit={handleSubmit}
+      >
         <SelectComponent
           data={bankData}
           label="Bank"
@@ -101,7 +111,7 @@ export default function RecipientDetails({
         </fieldset>
 
         <div className="mt-auto">
-          <Button text="Next" />
+          <Button type="submit" text="Next" />
         </div>
       </form>
     </div>

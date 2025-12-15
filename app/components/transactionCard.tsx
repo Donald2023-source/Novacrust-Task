@@ -30,7 +30,7 @@ export default function TransactionCard({
         {text}
       </p>
       <div className="flex items-center justify-between">
-        <span className="text-xl">1.00</span>
+        <span className="text-xl font-bold">1.00</span>
         <Select value={value} onValueChange={setValue}>
           <SelectTrigger className="w-fit">
             <SelectValue />
