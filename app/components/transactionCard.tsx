@@ -35,7 +35,7 @@ export default function TransactionCard({
       item.code.toLowerCase().includes(search.toLowerCase())
   );
   return (
-    <div className="border py-5 md:py-5 px-5 flex flex-col gap-2 rounded-4xl">
+    <div className="border py-5 md:py-4 px-5 flex flex-col gap-2 rounded-4xl">
       <p className="text-[#828282] md:text-base text-sm font-semibold">
         {text}
       </p>

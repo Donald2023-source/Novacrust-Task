@@ -7,7 +7,7 @@ interface Props {
 }
 export default function Navbar({ navItems, setActiveTab, activeTab }: Props) {
   return (
-    <nav className="md:w-[75%] w-[95%] bg-[#F2F2F2] rounded-full border mx-auto">
+    <nav className="md:w-[80%] w-[95%] bg-[#F2F2F2] rounded-full border mx-auto">
       <div className="flex justify-between items-center">
         {navItems.map((item, id) => (
           <span
