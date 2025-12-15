@@ -111,7 +111,7 @@ export default function RecipientDetails({
         </fieldset>
 
         <div className="mt-auto">
-          <Button type="submit" text="Next" />
+          <Button text="Next" />
         </div>
       </form>
     </div>

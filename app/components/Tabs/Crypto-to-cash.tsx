@@ -19,6 +19,7 @@ import Image from "next/image";
 import Button from "../Button";
 import { SetStateAction, useState } from "react";
 import { toast } from "sonner";
+import SelectComponent from "../SelectComponent";
 
 export default function CryptToCash({
   setShowReciepientDetails,
@@ -26,12 +27,13 @@ export default function CryptToCash({
   setShowReciepientDetails: React.Dispatch<SetStateAction<boolean>>;
 }) {
   const paymentType = [
-    { name: "Metamask", icon: img10 },
-    { name: "Rainbow", icon: img11 },
-    { name: "WalletConnect", icon: img12 },
+    { name: "Metamask", icon: img10, code: "MT" },
+    { name: "Rainbow", icon: img11, code: "MT" },
+    { name: "WalletConnect", icon: img12, code: "MT" },
     {
       name: "Other Crypto Wallets (Binance, Conibase, Bybit etc)",
       icon: img13,
+      code: "MT",
     },
   ];
 
@@ -64,72 +66,22 @@ export default function CryptToCash({
 
       {/* Payment from  */}
       <div className="flex flex-col gap-3">
-        <label className="font-semibold text-sm md:text-base text-[#013941] ml-2">
-          Pay from
-        </label>
-
-        <Select onValueChange={(value) => setPaymentFrom(value)}>
-          <SelectTrigger className="w-full p-7 bg-white border">
-            <SelectValue placeholder="Select a payment option" />
-          </SelectTrigger>
-
-          <SelectContent
-            className="text-sm"
-            position="popper"
-            side="bottom"
-            sideOffset={8}
-          >
-            {paymentType.map((item, idx) => (
-              <SelectItem
-                key={idx}
-                value={item.name}
-                className="flex items-center gap-5 py-3"
-              >
-                <Image
-                  className="size-8"
-                  src={item.icon}
-                  alt={`${item.name} icon`}
-                />
-                <span className="text-xs md:text-sm">{item.name}</span>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <SelectComponent
+          value={paymentFrom}
+          data={paymentType}
+          label="Pay From"
+          onChange={(value) => setPaymentFrom(value)}
+        />
       </div>
 
       {/* Payment to */}
       <div className="flex flex-col gap-3">
-        <label className="font-semibold text-sm md:text-base text-[#013941] ml-2">
-          Pay to
-        </label>
-
-        <Select onValueChange={(value) => setPaymentTo(value)}>
-          <SelectTrigger className="w-full p-7 bg-white border">
-            <SelectValue placeholder="Select a payment option" />
-          </SelectTrigger>
-
-          <SelectContent
-            className="text-sm"
-            position="popper"
-            side="bottom"
-            sideOffset={8}
-          >
-            {paymentType.map((item, idx) => (
-              <SelectItem
-                key={idx}
-                value={item.name}
-                className="flex items-center gap-5 py-3"
-              >
-                <Image
-                  className="size-8"
-                  src={item.icon}
-                  alt={`${item.name} icon`}
-                />
-                <span className="text-xs md:text-sm">{item.name}</span>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <SelectComponent
+          value={paymentTo}
+          data={paymentType}
+          label="Pay To"
+          onChange={(value) => setPaymentTo(value)}
+        />
       </div>
 
       <Button onClick={() => handleSubmit()} text="Convert now" />

@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/select";
 
 import { Search } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useState } from "react";
 import { PropsType } from "../types/types";
 export default function TransactionCard({

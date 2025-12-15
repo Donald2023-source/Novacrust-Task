@@ -7,14 +7,14 @@ interface Props {
 }
 export default function Navbar({ navItems, setActiveTab, activeTab }: Props) {
   return (
-    <nav className="md:w-[80%] w-[95%] bg-[#F2F2F2] rounded-full border mx-auto">
+    <nav className="md:w-[80%] w-[90%] bg-[#F2F2F2] rounded-full border mx-auto">
       <div className="flex justify-between items-center">
         {navItems.map((item, id) => (
           <span
             onClick={() => setActiveTab(item)}
             key={id}
             className={`${
-              item === activeTab && "bg-primary py-4 px-4  text-white "
+              item === activeTab && "bg-primary py-4 px-6  text-white "
             } rounded-full md:text-base text-xs cursor-pointer md:px-5 px-1 transition-all duration-500`}
           >
             {item}
