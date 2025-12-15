@@ -14,7 +14,7 @@ export default function Navbar({ navItems, setActiveTab, activeTab }: Props) {
             onClick={() => setActiveTab(item)}
             key={id}
             className={`${
-              item === activeTab && "bg-primary py-3 px-4  text-white "
+              item === activeTab && "bg-primary py-4 px-4  text-white "
             } rounded-full md:text-base text-xs cursor-pointer md:px-5 px-1 transition-all duration-500`}
           >
             {item}
