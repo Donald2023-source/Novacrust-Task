@@ -31,7 +31,7 @@ export default function Home() {
   const navItems = ["Crypto to cash", "Cash to crypto", "Crypto to flat loan"];
   const [activeTab, setActiveTab] = useState("Crypto to cash");
   return (
-    <div className="max-w-2xl p-5 flex items-center justify-center m-auto w-full h-fit">
+    <div className="max-w-2xl md:p-5 p-3 flex items-center justify-center m-auto w-full h-fit">
       <div className="flex shadow-xl py-5 border rounded-xl w-full  h-full my-auto flex-col">
         <Navbar
           navItems={navItems}
@@ -39,7 +39,7 @@ export default function Home() {
           setActiveTab={setActiveTab}
         />
 
-        <div className="w-[90%] py-8 mx-auto">
+        <div className="w-[95%] py-8 mx-auto">
           {activeTab === navItems[0] && (
             <div className="flex flex-col gap-8 h-full">
               <TransactionCard
@@ -60,22 +60,27 @@ export default function Home() {
                 <label className="font-semibold text-sm md:text-base text-[#013941] ml-2">
                   Pay from
                 </label>
+
                 <Select>
                   <SelectTrigger className="w-full p-7 bg-white border">
-                    <SelectValue placeholder="Select a fruit an Option" />
+                    <SelectValue placeholder="Select a payment option" />
                   </SelectTrigger>
-                  <SelectContent>
+
+                  <SelectContent position="popper" side="bottom" sideOffset={8}>
                     {paymentType.map((item, idx) => (
                       <SelectItem
-                        className="flex items-center gap-5 my-3"
-                        value={item?.name}
+                        key={idx}
+                        value={item.name}
+                        className="flex items-center gap-5 py-3"
                       >
                         <Image
-                          className="size-8 mr-3"
-                          src={item?.icon}
-                          alt={`${item?.name} icon`}
+                          className="size-8"
+                          src={item.icon}
+                          alt={`${item.name} icon`}
                         />
-                        <span>{item?.name}</span>
+                        <span className="text-xs md:text-base">
+                          {item.name}
+                        </span>
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -84,25 +89,30 @@ export default function Home() {
 
               {/* Payment to */}
               <div className="flex flex-col gap-3">
-                <label className="font-semibold md:text-base text-sm text-[#013941] ml-2">
+                <label className="font-semibold text-sm md:text-base text-[#013941] ml-2">
                   Pay to
                 </label>
+
                 <Select>
                   <SelectTrigger className="w-full p-7 bg-white border">
-                    <SelectValue placeholder="Select a fruit an Option" />
+                    <SelectValue placeholder="Select a payment option" />
                   </SelectTrigger>
-                  <SelectContent>
+
+                  <SelectContent position="popper" side="bottom" sideOffset={8}>
                     {paymentType.map((item, idx) => (
                       <SelectItem
-                        className="flex items-center gap-5 my-3"
-                        value={item?.name}
+                        key={idx}
+                        value={item.name}
+                        className="flex items-center gap-5 py-3"
                       >
                         <Image
-                          className="size-8 mr-3"
-                          src={item?.icon}
-                          alt={`${item?.name} icon`}
+                          className="size-8"
+                          src={item.icon}
+                          alt={`${item.name} icon`}
                         />
-                        <span>{item?.name}</span>
+                        <span className="text-xs md:text-base">
+                          {item.name}
+                        </span>
                       </SelectItem>
                     ))}
                   </SelectContent>
