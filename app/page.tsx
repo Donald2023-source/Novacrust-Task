@@ -4,6 +4,8 @@ import { useState } from "react";
 import { countries, currencies } from "./data/data";
 import CryptToCash from "./components/Tabs/Crypto-to-cash";
 import RecipientDetails from "./components/RecipientDetails";
+import CashToCrypto from "./components/Tabs/Cash-to-crypto";
+import CryptoToLoan from "./components/Tabs/Crypto-to-loan";
 
 export default function Home() {
   const navItems = ["Crypto to cash", "Cash to crypto", "Crypto to flat loan"];
@@ -27,17 +29,9 @@ export default function Home() {
             <CryptToCash setShowReciepientDetails={setShowReciepientDetails} />
           )}
 
-          {activeTab === navItems[1] && (
-            <div className="mt-8 text-center font-semibold">
-              Cash to Cryto Tab coming soon!
-            </div>
-          )}
+          {activeTab === navItems[1] && <CashToCrypto />}
 
-          {activeTab === navItems[2] && (
-            <div className="mt-8 text-center font-semibold">
-              Crypto to flat loan coming soon!
-            </div>
-          )}
+          {activeTab === navItems[2] && <CryptoToLoan />}
         </div>
       </div>
 

@@ -58,7 +58,12 @@ export default function CryptToCash({
             <SelectValue placeholder="Select a payment option" />
           </SelectTrigger>
 
-          <SelectContent position="popper" side="bottom" sideOffset={8}>
+          <SelectContent
+            className="text-sm"
+            position="popper"
+            side="bottom"
+            sideOffset={8}
+          >
             {paymentType.map((item, idx) => (
               <SelectItem
                 key={idx}
@@ -70,7 +75,7 @@ export default function CryptToCash({
                   src={item.icon}
                   alt={`${item.name} icon`}
                 />
-                <span className="text-xs md:text-base">{item.name}</span>
+                <span className="text-xs md:text-sm">{item.name}</span>
               </SelectItem>
             ))}
           </SelectContent>
@@ -88,7 +93,12 @@ export default function CryptToCash({
             <SelectValue placeholder="Select a payment option" />
           </SelectTrigger>
 
-          <SelectContent position="popper" side="bottom" sideOffset={8}>
+          <SelectContent
+            className="text-sm"
+            position="popper"
+            side="bottom"
+            sideOffset={8}
+          >
             {paymentType.map((item, idx) => (
               <SelectItem
                 key={idx}
@@ -100,7 +110,7 @@ export default function CryptToCash({
                   src={item.icon}
                   alt={`${item.name} icon`}
                 />
-                <span className="text-xs md:text-base">{item.name}</span>
+                <span className="text-xs md:text-sm">{item.name}</span>
               </SelectItem>
             ))}
           </SelectContent>
