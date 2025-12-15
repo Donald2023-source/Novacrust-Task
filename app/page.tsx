@@ -12,9 +12,9 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("Crypto to cash");
   const [showRecieptientDetails, setShowReciepientDetails] = useState(false);
   return (
-    <div className="max-w-2xl md:p-5 p-3 flex items-center justify-center m-auto w-full h-fit">
+    <div className="max-w-2xl md:p-5 p-2 flex items-center justify-center m-auto w-full h-fit">
       <div
-        className={`flex shadow-xl py-5 px-4 rounded-xl w-full  h-full my-auto flex-col ${
+        className={`flex md:shadow-xl py-5 md:px-5 px-1 rounded-xl w-full  h-full my-auto flex-col ${
           showRecieptientDetails && "hidden"
         }`}
       >
@@ -24,7 +24,7 @@ export default function Home() {
           setActiveTab={setActiveTab}
         />
 
-        <div className="w-[95%] py-8 mx-auto">
+        <div className="w-full py-8 mx-auto">
           {activeTab === navItems[0] && (
             <CryptToCash setShowReciepientDetails={setShowReciepientDetails} />
           )}
