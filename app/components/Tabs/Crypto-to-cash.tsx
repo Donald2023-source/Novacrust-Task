@@ -16,8 +16,13 @@ import img12 from "@/public/walletconnect-seeklogo.png";
 import img13 from "@/public/wallet-filled-money-tool.png";
 import Image from "next/image";
 import Button from "../Button";
+import { SetStateAction } from "react";
 
-export default function CryptToCash() {
+export default function CryptToCash({
+  setShowReciepientDetails,
+}: {
+  setShowReciepientDetails: React.Dispatch<SetStateAction<boolean>>;
+}) {
   const paymentType = [
     { name: "Metamask", icon: img10 },
     { name: "Rainbow", icon: img11 },
@@ -102,7 +107,10 @@ export default function CryptToCash() {
         </Select>
       </div>
 
-      <Button text="Convert now" />
+      <Button
+        onClick={() => setShowReciepientDetails(true)}
+        text="Convert now"
+      />
     </div>
   );
 }

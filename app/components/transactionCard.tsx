@@ -9,23 +9,13 @@ import {
 import { Search } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
-interface data {
-  name: string;
-  code: string;
-  icon: StaticImageData;
-}
-interface Props {
-  data: data[];
-  initialState: string;
-  isSearch: boolean;
-  text: string;
-}
+import { PropsType } from "../types/types";
 export default function TransactionCard({
   data,
   initialState,
   isSearch,
   text,
-}: Props) {
+}: PropsType) {
   const [value, setValue] = useState(initialState);
 
   const [search, setSearch] = useState("");
